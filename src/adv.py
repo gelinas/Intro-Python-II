@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+
 
 # Declare all the rooms
 
@@ -39,6 +41,12 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
+name = input("\nWhat is your name, brave adventurer?\n~~> ")
+
+player = Player(name, room['outside'])
+
+print(f"\nWelcome, {player.name}! Navigate the world by typing 'n', 's', 'e', 'w',\n    end your quest by typing 'q'")
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -51,14 +59,11 @@ room['treasure'].s_to = room['narrow']
 # If the user enters "q", quit the game.
 
 choices = ["n", "s", "e", "w"]
-current_room = room['outside']
-
-print("\nWelcome, brave soul! Navigate the world by typing 'n', 's', 'e', 'w',\n    end your quest by typing 'q'")
 
 #LOOP
 while True:
     # PRINT
-    print(f"\nLocation: {current_room.name}. {current_room.description}")
+    print(f"\nLocation: {player.current_room.name}. {player.current_room.description}")
     # READ
     cmd = input("\n~~> ")
     # EVAL
@@ -66,22 +71,22 @@ while True:
         # print(cmd)
         if cmd == "n":
             try:
-                current_room = current_room.n_to
+                player.current_room = player.current_room.n_to
             except:
                 print("\nYou can't move north")
         if cmd == "s":
             try:
-                current_room = current_room.s_to
+                player.current_room = player.current_room.s_to
             except:
                 print("\nYou can't move south")
         if cmd == "e":
             try:
-                current_room = current_room.e_to
+                player.current_room = player.current_room.e_to
             except:
                 print("\nYou can't move east")
         if cmd == "w":
             try:
-                current_room = current_room.w_to
+                player.current_room = player.current_room.w_to
             except:
                 print("\nYou can't move west")
     elif cmd == "q":
