@@ -49,3 +49,43 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+choices = ["n", "s", "e", "w"]
+current_room = room['outside']
+
+print("\nWelcome, brave soul! Navigate the world by typing 'n', 's', 'e', 'w',\n    end your quest by typing 'q'")
+
+#LOOP
+while True:
+    # PRINT
+    print(f"\nLocation: {current_room.name}. {current_room.description}")
+    # READ
+    cmd = input("\n~~> ")
+    # EVAL
+    if cmd in choices:
+        # print(cmd)
+        if cmd == "n":
+            try:
+                current_room = current_room.n_to
+            except:
+                print("\nYou can't move north")
+        if cmd == "s":
+            try:
+                current_room = current_room.s_to
+            except:
+                print("\nYou can't move south")
+        if cmd == "e":
+            try:
+                current_room = current_room.e_to
+            except:
+                print("\nYou can't move east")
+        if cmd == "w":
+            try:
+                current_room = current_room.w_to
+            except:
+                print("\nYou can't move west")
+    elif cmd == "q":
+        print("\nPlease return soon, intrepid adventurer!\n")
+        break
+    else:
+        print("\nI did not understand that command. Please pick n, s, e, w or q.")
