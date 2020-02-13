@@ -2,6 +2,16 @@
 # currently.
 
 class Player:
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, items = []):
         self.name = name
         self.current_room = current_room
+        self.items = items
+    def travel(self, direction):
+        next_room = getattr(self.current_room, f"{direction}_to")
+        if next_room is not None:
+            self.current_room = next_room
+            # print(self.current_room)
+        else:
+            print("You cannot move in that direction")
+    def add_item(self, item):
+        self.items.append(item)
