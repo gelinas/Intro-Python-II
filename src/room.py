@@ -15,5 +15,7 @@ class Room:
         This is a string method
         '''
         return f"{self.name}\n\n{self.description}"
-    def add_item(self, item):
+    def append_item(self, item):
+        self.items.append(item)
+    def remove_item(self, item):
         self.items.append(item)
